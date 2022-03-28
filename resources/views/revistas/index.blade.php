@@ -38,6 +38,6 @@
         </tr>
     @endforeach
 </table>
-{!! $alumnos->links() !!}
+{!! $revistas->links() !!}
 
 @endsection

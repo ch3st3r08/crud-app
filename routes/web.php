@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controller\RevistaController;
+use App\Http\Controllers\RevistaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
