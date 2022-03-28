@@ -71,7 +71,7 @@ class RevistaController extends Controller
      * @param  \App\Models\Revista  $revista
      * @return \Illuminate\Http\Response
      */
-    public function edit(Revista $revista)
+    public function edit($id)
     {
         //
         $revista = Revista::find($id);
@@ -85,9 +85,20 @@ class RevistaController extends Controller
      * @param  \App\Models\Revista  $revista
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Revista $revista)
+    public function update(Request $request, $id)
     {
         //
+        $revista = Revista::find($id);
+        $revista->nombre = $request->nombre;
+        $revista->num_revista = $request->num_revista;
+        $revista->fecha_edicion = $request->fecha_edicion;
+        $revista->num_paginas = $request->num_paginas;
+        $revista->editorial = $request->editorial;
+        $revista->save();
+
+        $revistas = Revista::latest()->paginate(5);
+        return view('revistas.index', compact('revistas'))
+            ->with('i', (request()->input('page',1) - 1) * 5);
     }
 
     /**
@@ -96,8 +107,12 @@ class RevistaController extends Controller
      * @param  \App\Models\Revista  $revista
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Revista $revista)
+    public function destroy($id)
     {
         //
+        Revista::find($id)->delete();
+        $revistas = Revista::latest()->paginate(5);
+        return view('revistas.index', compact('revistas'))
+            ->with('i', (request()->input('page',1) - 1) * 5);
     }
 }

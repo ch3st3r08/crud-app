@@ -1,6 +1,10 @@
 @extends('Layouts.app')
 
 @section('content')
+<h1>Listado de revistas</h1>
+
+<a class="btn btn-primary" href="{{url('revista/create')}}">
+    Añadir revista </a>
 
 <table class="table table-bordered table-responsive-lg">
     <tr>

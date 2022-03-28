@@ -14,7 +14,7 @@ use App\Http\Controllers\RevistaController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/revista');
 });
 
 Route::resource('revista', RevistaController::class);
